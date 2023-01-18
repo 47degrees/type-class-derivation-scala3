@@ -12,7 +12,7 @@ trait Show[A]:
 object Show:
 
   def apply[A](using inst: Show[A]): Show[A] = inst
-  
+
   given Show[Int] = _.toString
   given Show[Boolean] = _.toString
   given Show[String] = identity(_)
@@ -34,16 +34,19 @@ object Show:
       shows: => List[Show[_]],
       labels: => List[String]
   ): Show[T] = (t: T) =>
-      t.asInstanceOf[Product]
-        .productIterator
-        .zip(shows.iterator)
-        .zip(labels)
-        .map { case ((productElement, showInstance), label) =>
-          s"$label = ${showInstance.asInstanceOf[Show[Any]].show(productElement)}"
-        }
-        .mkString(s"$label(", ", ", ")")
+    t.asInstanceOf[Product]
+      .productIterator
+      .zip(shows.iterator)
+      .zip(labels)
+      .map { case ((productElement, showInstance), label) =>
+        s"$label = ${showInstance.asInstanceOf[Show[Any]].show(productElement)}"
+      }
+      .mkString(s"$label(", ", ", ")")
 
-  private def deriveShowSum[T](s: Mirror.SumOf[T], shows: => List[Show[_]]): Show[T] =
+  private def deriveShowSum[T](
+      s: Mirror.SumOf[T],
+      shows: => List[Show[_]]
+  ): Show[T] =
     (t: T) =>
       val index = s.ordinal(t)
       shows(index).asInstanceOf[Show[Any]].show(t)

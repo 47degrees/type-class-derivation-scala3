@@ -20,7 +20,8 @@ object Show:
     (a: A) =>
       labelling.elemLabels.zipWithIndex
         .map { (label, index) =>
-          val value = pInst.project(a)(index)([t] => (st: Show[t], pt: t) => st.show(pt))
+          val value =
+            pInst.project(a)(index)([t] => (st: Show[t], pt: t) => st.show(pt))
           s"$label = $value"
         }
         .mkString(s"${labelling.label}(", ", ", ")")
