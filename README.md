@@ -1,7 +1,5 @@
-## sbt project compiled with Scala 3
+## Type class Derivation in Scala 3 
 
-### Usage
+This repo shows how to derive type class instances in Scala 3. There are two approaches here. One of them uses the [Scala 3 framework](https://docs.scala-lang.org/scala3/reference/contextual/derivation.html), and the other uses [Shapeless 3](https://github.com/typelevel/shapeless-3). Both approaches take the `Show` type class as an example.
 
-This is a normal sbt project. You can compile code with `sbt compile`, run it with `sbt run`, and `sbt console` will start a Scala 3 REPL.
-For more information on the sbt-dotty plugin, see the
-[scala3-example-project](https://github.com/scala/scala3-example-project/blob/main/README.md).
+This is the companion repository of the [....] blog post. 
