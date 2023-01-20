@@ -43,7 +43,7 @@ object Show:
       }
       .mkString(s"$label(", ", ", ")")
 
-  private def deriveShowSum[T](
+  def deriveShowSum[T](
       s: Mirror.SumOf[T],
       shows: => List[Show[_]]
   ): Show[T] =

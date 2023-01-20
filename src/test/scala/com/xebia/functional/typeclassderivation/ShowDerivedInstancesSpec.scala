@@ -1,6 +1,5 @@
 package com.xebia.functional.typeclassderivation
 
-import com.xebia.functional.typeclassderivation.shapeless3.Show
 import munit.FunSuite
 
 class ShowDerivedInstancesSpec extends FunSuite {
@@ -16,14 +15,14 @@ class ShowDerivedInstancesSpec extends FunSuite {
     case object Green extends Color
     case object Blue extends Color
 
-  enum XEnum:
-    case Y(x: Int, y: String, z: Boolean)
-    case Z
+  enum StatusEnum:
+    case Good(score: Int)
+    case Bad(reason: String)
 
-  sealed trait X
-  object X:
-    final case class Y(x: Int, y: String, z: Boolean) extends X
-    case object Z extends X
+  sealed trait Status
+  object Status:
+    final case class Good(score: Int) extends Status
+    final case class Bad(reason: String) extends Status
 
   test("Type class instances derived using Shapeless 3") {
 
@@ -36,16 +35,20 @@ class ShowDerivedInstancesSpec extends FunSuite {
     assertEquals(Show[ColorEnum].show(ColorEnum.Blue), "Blue()")
     assertEquals(Show[Color].show(Color.Blue), "Blue()")
     assertEquals(
-      Show[XEnum].show(XEnum.Y(1, "s", true)),
-      "Y(x = 1, y = s, z = true)"
+      Show[StatusEnum].show(StatusEnum.Good(100)),
+      "Good(score = 100)"
     )
     assertEquals(
-      Show[XEnum].show(XEnum.Z),
-      "Z()"
+      Show[StatusEnum].show(StatusEnum.Bad("fail")),
+      "Bad(reason = fail)"
     )
     assertEquals(
-      Show[X].show(X.Y(1, "s", true)),
-      "Y(x = 1, y = s, z = true)"
+      Show[Status].show(Status.Good(100)),
+      "Good(score = 100)"
+    )
+    assertEquals(
+      Show[Status].show(Status.Bad("fail")),
+      "Bad(reason = fail)"
     )
 
   }
@@ -61,20 +64,20 @@ class ShowDerivedInstancesSpec extends FunSuite {
     assertEquals(Show[ColorEnum].show(ColorEnum.Blue), "Blue()")
     assertEquals(Show[Color].show(Color.Blue), "Blue()")
     assertEquals(
-      Show[XEnum].show(XEnum.Y(1, "s", true)),
-      "Y(x = 1, y = s, z = true)"
+      Show[StatusEnum].show(StatusEnum.Good(100)),
+      "Good(score = 100)"
     )
     assertEquals(
-      Show[XEnum].show(XEnum.Z),
-      "Z()"
+      Show[StatusEnum].show(StatusEnum.Bad("fail")),
+      "Bad(reason = fail)"
     )
     assertEquals(
-      Show[X].show(X.Y(1, "s", true)),
-      "Y(x = 1, y = s, z = true)"
+      Show[Status].show(Status.Good(100)),
+      "Good(score = 100)"
     )
     assertEquals(
-      Show[X].show(X.Z),
-      "Z()"
+      Show[Status].show(Status.Bad("fail")),
+      "Bad(reason = fail)"
     )
 
   }
