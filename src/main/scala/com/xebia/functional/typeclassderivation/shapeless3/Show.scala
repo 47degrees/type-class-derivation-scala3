@@ -1,4 +1,4 @@
-package typeclassderivation.shapeless3
+package com.xebia.functional.typeclassderivation.shapeless3
 
 import shapeless3.deriving.*
 

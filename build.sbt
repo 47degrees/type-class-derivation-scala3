@@ -4,6 +4,7 @@ lazy val root = project
   .in(file("."))
   .settings(
     name := "type-class-derivation-scala3",
+    organization := "com.xebia.functional",
     version := "0.1.0-SNAPSHOT",
     scalaVersion := scala3Version,
     libraryDependencies ++= Seq(

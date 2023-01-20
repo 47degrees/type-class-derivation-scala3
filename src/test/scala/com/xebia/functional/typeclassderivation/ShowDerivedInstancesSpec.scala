@@ -1,7 +1,7 @@
-package typeclassderivation
+package com.xebia.functional.typeclassderivation
 
+import com.xebia.functional.typeclassderivation.shapeless3.Show
 import munit.FunSuite
-import typeclassderivation.shapeless3.Show
 
 class ShowDerivedInstancesSpec extends FunSuite {
 
@@ -27,7 +27,7 @@ class ShowDerivedInstancesSpec extends FunSuite {
 
   test("Type class instances derived using Shapeless 3") {
 
-    import typeclassderivation.shapeless3.Show
+    import com.xebia.functional.typeclassderivation.shapeless3.Show
 
     case class Bar(x: Int, y: String, z: Boolean) derives Show
 
@@ -52,9 +52,9 @@ class ShowDerivedInstancesSpec extends FunSuite {
 
   test("Type class instances derived using only Scala 3") {
 
-    import typeclassderivation.scala3.Show
+    import com.xebia.functional.typeclassderivation.scala3.Show
 
-    case class Bar(x: Int, y: String, z: Boolean) derives Show
+    case class Bar(x: Int, y: String, z: Boolean) derives scala3.Show
 
     assertEquals(Show[Bar].show(Bar(1, "s", true)), "Bar(x = 1, y = s, z = true)")
     assertEquals(Show[Foo].show(Foo(1, "s", true)), "Foo(x = 1, y = s, z = true)")

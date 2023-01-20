@@ -1,7 +1,7 @@
-package typeclassderivation.scala3
+package com.xebia.functional.typeclassderivation.scala3
 
+import com.xebia.functional.typeclassderivation.shapeless3.Show
 import shapeless3.deriving.K0
-import typeclassderivation.shapeless3.Show
 
 import scala.compiletime.{constValue, erasedValue, summonInline}
 import scala.deriving.Mirror
